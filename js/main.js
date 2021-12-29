@@ -23,7 +23,7 @@ modalButton.onclick = function() {
 }
 
 
-let server = new WebSocket('ws://46.173.218.176:5051');
+let server = new WebSocket('wss://46.173.218.176:5051');
 server.onopen = function() {
 
   function onEnterCb() {
