@@ -1,12 +1,26 @@
-
-
-
 let passInput = document.querySelector('.pass-input');
 let passButton = document.querySelector('.pass-button');
 let giftScreen = document.querySelector('.gift-screen');
 let passScreen = document.querySelector('.pass-screen');
 let giftText = document.querySelector('.gift-text');
+let showHintButton = document.querySelector('.show-hint-button');
+let hintModal =  document.querySelector('.hint');
+let modalBackground =  document.querySelector('.modal-background');
+let modalButton = document.querySelector('.modal-button');
+let inputPar = document.querySelector('.input-par')
 
+showHintButton.onclick = function(event) {
+  hintModal.classList.add('show');
+  hintModal.classList.remove('hidden');
+  modalBackground.classList.remove('hidden')
+  // modalBackground.classList.add('hidden')
+}
+
+modalButton.onclick = function() {
+  hintModal.classList.remove('show')
+  hintModal.classList.add('hide');
+  modalBackground.classList.add('hidden');
+}
 
 
 let server = new WebSocket('ws://localhost:5051');
@@ -57,8 +71,10 @@ server.onmessage = function(message) {
       giftText.innerText = gift;
 
     } else {
-      console.log('fail')
-
+      showHintButton.classList.remove('hidden')
+      showHintButton.classList.add('show');
+      passInput.value = '';
+      inputPar.classList.add('warn-input')
     }
   }
 }
