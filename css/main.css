@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'm-regular';
+  src: url('../fonts/minecraft-rus.ttf');
+}
+
+@keyframes show{
+  from {
+    display: block;
+    transform: translate(0px, 20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes hide{
+  from {
+    transform: translate(0);
+    opacity: 1;
+  }
+
+  99% {
+    transform: translate(0px, 20px);
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0;
+    display:none;
+  }
+
+ 
+}
+
+body {
+  /* background-color: #F4EFE2; */
+  padding: 30px;
+}
+
+/* body {
+  background-color: black;
+ */
+
+* {
+  box-sizing: border-box !important;
+  font-family: 'm-regular';
+}
+
+h1 {
+  font-family: 'm-regular';
+  line-height: 1.2;
+  text-align: center;
+}
+
+p {
+  font-family: 'm-regular';
+  line-height: 1.5;
+}
+
+.pass-screen {
+  /* animation-name: hide; */
+  /* animation-duration: 1s; */
+  /* animation-fill-mode:both; */
+}
+
+.pass-screen .container {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.pass-screen h1{
+  margin-top: 0px;
+}
+
+.pass-screen img {
+  margin-top: 70px;
+}
+
+.pass-screen input {
+  border: none;
+  border-radius: 100px;
+  height: 40px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 15px;
+  background-color: #eee;
+}
+
+.pass-screen button {
+  border: none;
+  padding: 0 15px;
+  border-radius: 100px;
+  height: 40px;
+  background-color: red;
+  color: white;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.pass-screen button:hover{ 
+  background-color: rgb(255, 92, 92);
+  cursor: pointer;
+}
+
+.pass-screen .input-par {
+  margin-top: 20px;
+}
+
+.gift-screen .container {
+  text-align: center;
+}
+
+.gift-screen h1 {
+  /* font-size: 50px; */
+}
+
+.gift-text {
+  background-color: grey;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: #e7e7e7;
+  font-size: 40px;
+  margin: 0;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.hide {
+  animation-name: hide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.show {
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
