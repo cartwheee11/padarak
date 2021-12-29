@@ -23,7 +23,7 @@ modalButton.onclick = function() {
 }
 
 
-let server = new WebSocket('ws://localhost:5051');
+let server = new WebSocket('ws://46.173.218.176:5051');
 server.onopen = function() {
 
   function onEnterCb() {
@@ -74,7 +74,10 @@ server.onmessage = function(message) {
       showHintButton.classList.remove('hidden')
       showHintButton.classList.add('show');
       passInput.value = '';
-      inputPar.classList.add('warn-input')
+      inputPar.classList.remove('warn-input')
+      setTimeout(function () {
+        inputPar.classList.add('warn-input')
+      }, 0.05)
     }
   }
 }
