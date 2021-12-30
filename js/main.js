@@ -9,11 +9,13 @@ let modalBackground =  document.querySelector('.modal-background');
 let modalButton = document.querySelector('.modal-button');
 let inputPar = document.querySelector('.input-par')
 
+
+const encrypted = 'U2FsdGVkX1/4iUyDw5Nyf/yp45lndd5zNL4muyK/g8I='
+
 showHintButton.onclick = function(event) {
   hintModal.classList.add('show');
   hintModal.classList.remove('hidden');
   modalBackground.classList.remove('hidden')
-  // modalBackground.classList.add('hidden')
 }
 
 modalButton.onclick = function() {
@@ -22,63 +24,44 @@ modalButton.onclick = function() {
   modalBackground.classList.add('hidden');
 }
 
+function verifyPass(pass) {
+  let decrypted = CryptoJS.AES.decrypt(encrypted, pass).toString(CryptoJS.enc.Utf8);
 
-let server = new WebSocket('wss://46.173.218.176:5051');
-server.onopen = function() {
+  if(decrypted) {
+    let gift = decrypted;
+    console.log('success')
 
-  function onEnterCb() {
-    let pass = passInput.value;
+    passScreen.classList.remove('show')
+    passScreen.classList.add('hide');
 
+    setTimeout(function() {
+      passScreen.classList.add('hidden');
+      giftScreen.classList.remove('hidden')
+      giftScreen.classList.remove('hide');
+      giftScreen.classList.add('show');
+    }, 1000);
+    
 
-    let query = { type: 'pass', data: passInput.value.toLowerCase()}
-    server.send(JSON.stringify(query));
-  }
-
-  // alert('соединяние состоялосб');
-  passButton.onclick = onEnterCb
-  document.onkeydown = function(event) {
-    if(event.key == 'Enter') {
-      onEnterCb();
-    }
-  }
-  
-  // server.send('hello');
-}
-
-
-
-
-server.onmessage = function(message) {
-  let body = JSON.parse(message.data);
-  if(body.type == 'verify') {
-    if(body.data.result == 'success') {
-      console.log('success')
-      let gift = body.data.gift;
-
-      
-
-      passScreen.classList.remove('show')
-      passScreen.classList.add('hide');
-
-      setTimeout(function() {
-        passScreen.classList.add('hidden');
-        giftScreen.classList.remove('hidden')
-        giftScreen.classList.remove('hide');
-        giftScreen.classList.add('show');
-      }, 1000);
-      
-
-      giftText.innerText = gift;
-
-    } else {
-      showHintButton.classList.remove('hidden')
-      showHintButton.classList.add('show');
-      passInput.value = '';
-      inputPar.classList.remove('warn-input')
-      setTimeout(function () {
-        inputPar.classList.add('warn-input')
-      }, 0.05)
-    }
+    giftText.innerText = gift;
+  } else {
+    showHintButton.classList.remove('hidden')
+    showHintButton.classList.add('show');
+    passInput.value = '';
+    inputPar.classList.remove('warn-input')
+    setTimeout(function () {
+      inputPar.classList.add('warn-input')
+    }, 0.05);
   }
 }
 
+function onEnterCb() {
+  let pass = passInput.value;
+  verifyPass(pass);
+}
+
+passButton.onclick = onEnterCb;
+document.onkeydown = function(event) {
+  if(event.key == 'Enter') {
+    onEnterCb();
+  }
+}
