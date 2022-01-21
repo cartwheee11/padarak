@@ -9,7 +9,6 @@ let modalBackground =  document.querySelector('.modal-background');
 let modalButton = document.querySelector('.modal-button');
 let inputPar = document.querySelector('.input-par')
 
-
 const encrypted = 'U2FsdGVkX1/4iUyDw5Nyf/yp45lndd5zNL4muyK/g8I='
 
 showHintButton.onclick = function(event) {
